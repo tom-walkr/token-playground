@@ -1,3 +1,5 @@
+import type { CSSProperties } from 'react'
+
 export interface TypeScale {
   baseSize: number
   ratio: number
@@ -14,13 +16,16 @@ export interface PaletteColors {
   tertiary: string
 }
 
-export interface DesignTokens {
+export interface PlaygroundTokens {
   typeScale: TypeScale
   spacing: SpacingScale
   palette: PaletteColors
 }
 
-export const defaultTokens: DesignTokens = {
+/** @deprecated Use PlaygroundTokens */
+export type DesignTokens = PlaygroundTokens
+
+export const defaultPlaygroundTokens: PlaygroundTokens = {
   typeScale: {
     baseSize: 16,
     ratio: 1.25,
@@ -36,16 +41,17 @@ export const defaultTokens: DesignTokens = {
   },
 }
 
-export function applyDesignTokensToRoot(tokens: DesignTokens): void {
-  const root = document.documentElement.style
+/** @deprecated Use defaultPlaygroundTokens */
+export const defaultTokens = defaultPlaygroundTokens
 
-  root.setProperty('--type-base-size', `${tokens.typeScale.baseSize}px`)
-  root.setProperty('--type-ratio', String(tokens.typeScale.ratio))
-
-  root.setProperty('--spacing-base', `${tokens.spacing.base}px`)
-  root.setProperty('--spacing-scale', String(tokens.spacing.scale))
-
-  root.setProperty('--color-primary', tokens.palette.primary)
-  root.setProperty('--color-secondary', tokens.palette.secondary)
-  root.setProperty('--color-tertiary', tokens.palette.tertiary)
+export function playgroundTokensToStyle(tokens: PlaygroundTokens): CSSProperties {
+  return {
+    '--token-type-base-size': `${tokens.typeScale.baseSize}px`,
+    '--token-type-ratio': String(tokens.typeScale.ratio),
+    '--token-spacing-base': `${tokens.spacing.base}px`,
+    '--token-spacing-scale': String(tokens.spacing.scale),
+    '--token-color-primary': tokens.palette.primary,
+    '--token-color-secondary': tokens.palette.secondary,
+    '--token-color-tertiary': tokens.palette.tertiary,
+  } as CSSProperties
 }

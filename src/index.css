@@ -1,1 +1,62 @@
 @import "tailwindcss";
+
+:root {
+  --app-color-primary: #4f46e5;
+  --app-color-background: #f5f5f7;
+  --app-color-surface: #ffffff;
+  --app-color-foreground: #1c1c1f;
+  --app-color-border: #e2e2e6;
+  --app-color-muted: #6b6b76;
+
+  --app-spacing-base: 16px;
+  --app-spacing-scale: 1.5;
+
+  --app-text-base: 15px;
+  --app-text-base-line-height: 1.4666666667;
+
+  --app-radius: 12px;
+  --app-shadow-elevation: 0 8px 17px rgba(20, 20, 30, 0.11);
+  --app-transition-duration: 200ms;
+}
+
+@theme {
+  --color-primary: var(--app-color-primary);
+  --color-background: var(--app-color-background);
+  --color-surface: var(--app-color-surface);
+  --color-foreground: var(--app-color-foreground);
+  --color-border: var(--app-color-border);
+  --color-muted: var(--app-color-muted);
+
+  --font-sans: "Erode", ui-serif, Georgia, serif;
+  --font-body: "Erode", ui-serif, Georgia, serif;
+  --font-heading: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+
+  --text-base: var(--app-text-base);
+  --text-base--line-height: var(--app-text-base-line-height);
+
+  --radius: var(--app-radius);
+
+  --shadow-elevation: var(--app-shadow-elevation);
+
+  --default-transition-duration: var(--app-transition-duration);
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --spacing-inset: var(--app-spacing-base);
+  --spacing-gutter: calc(var(--app-spacing-base) * var(--app-spacing-scale));
+}
+
+@layer base {
+  body {
+    @apply bg-background font-body text-base text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+}
