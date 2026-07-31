@@ -10,10 +10,10 @@ function Sidebar({ children, title, description }: SidebarProps) {
   return (
     <aside
       aria-label="Token controls"
-      className="flex w-80 shrink-0 flex-col gap-gutter border-r border-border bg-surface px-gutter py-gutter overflow-y-auto h-screen"
+      className="flex h-full w-80 shrink-0 flex-col border-r border-border bg-surface"
     >
       {(title !== undefined || description !== undefined) && (
-        <header className="flex flex-col gap-inset">
+        <header className="flex shrink-0 flex-col gap-inset px-gutter pt-gutter pb-inset">
           {title !== undefined && (
             <div className="font-heading text-lg font-bold text-foreground">
               {title}
@@ -24,7 +24,9 @@ function Sidebar({ children, title, description }: SidebarProps) {
           )}
         </header>
       )}
-      <div className="flex flex-col gap-gutter">{children}</div>
+      <div className="flex min-h-0 flex-1 flex-col gap-gutter overflow-y-auto px-gutter pb-gutter">
+        {children}
+      </div>
     </aside>
   )
 }

@@ -17,6 +17,15 @@
   --app-radius: 12px;
   --app-shadow-elevation: 0 8px 17px rgba(20, 20, 30, 0.11);
   --app-transition-duration: 200ms;
+
+  --app-background-pattern: repeating-linear-gradient(
+    315deg,
+    oklab(0.13 -0.004046 -0.027706 / 0.05) 0px,
+    oklab(0.13 -0.004046 -0.027706 / 0.05) 1px,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 50%
+  );
+  --app-background-pattern-size: 10px 10px;
 }
 
 @theme {
@@ -46,8 +55,18 @@
 }
 
 @layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
   body {
-    @apply bg-background font-body text-base text-foreground;
+    @apply font-body text-base text-foreground;
+    background-color: var(--app-color-background);
+    background-image: var(--app-background-pattern);
+    background-size: var(--app-background-pattern-size);
   }
 
   h1,

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { applyAppTokensToRoot, defaultAppTokens } from './appTokens'
 import ControlCard from './components/ControlCard'
 import ControlGroup from './components/ControlGroup'
+import DisplayArea from './components/DisplayArea'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import TokenPreview from './components/TokenPreview'
@@ -16,9 +17,12 @@ function App() {
   }, [appTokens])
 
   return (
-    <main className="min-h-screen bg-background" aria-label="Design token playground">
+    <main
+      className="flex h-svh flex-col overflow-hidden"
+      aria-label="Design token playground"
+    >
       <Header />
-      <div className="flex min-h-[calc(100svh-4rem)]">
+      <div className="flex min-h-0 flex-1 overflow-hidden">
         <Sidebar
           title="Controls"
           description="Adjust playground tokens and see the preview update."
@@ -75,9 +79,9 @@ function App() {
           </ControlCard>
         </Sidebar>
 
-        <div className="flex-1 px-gutter py-gutter">
+        <DisplayArea>
           <TokenPreview tokens={playgroundTokens} />
-        </div>
+        </DisplayArea>
       </div>
     </main>
   )
